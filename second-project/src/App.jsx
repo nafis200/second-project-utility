@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Watch from './components/sunglass/Watch/Watch'
 import Bottles from './bottles/Bottles'
+import { addTols, getStoredCart } from './utility/Localstorage'
 
 function App() {
 
@@ -13,6 +14,8 @@ function App() {
   const handleCard = (values)=>{
      const newCount = [...count,values]
      setCount(newCount)
+     addTols(values.id
+    )
   }
 
   useEffect(()=>{
@@ -21,6 +24,13 @@ function App() {
      .then(data => setWatches(data))
 
   },[])
+
+// load cart from local storage
+
+useEffect(()=>{
+   const storedCart = getStoredCart()
+   console.log(storedCart);
+},[]);
    
   
   return (
@@ -35,6 +45,8 @@ function App() {
       </div>
     </>
   )
+
 }
 
 export default App
+

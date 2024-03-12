@@ -8,7 +8,7 @@ const Watch = ({watch, handleCard}) => {
         <div className='Watching'>
             <h2>Watchs:{name}</h2>
             <p>{price}</p>
-            <button onClick={()=>{handleCard()}}>add button</button>
+            <button onClick={()=>{handleCard(watch)}}>add button</button>
         </div>
     );
 };
