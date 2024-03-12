@@ -3,10 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Watch from './components/sunglass/Watch/Watch'
+import Bottles from './bottles/Bottles'
 
 function App() {
 
   const [watchs, setWatches] = useState([])
+  const [count, setCount] = useState([]);
+  
+  const handleCard = (values)=>{
+     const newCount = [...count,values]
+     setCount(newCount)
+  }
 
   useEffect(()=>{
      fetch('watch.json')
@@ -15,22 +22,17 @@ function App() {
 
   },[])
    
-  // const watchs = [
-  //   { id: 1, name: 'Rolex Submariner', price: 10000 },
-  //   { id: 2, name: 'Omega Speedmaster Professional', price: 5000 },
-  //   { id: 3, name: 'Seiko Presage', price: 800 },
-  //   { id: 4, name: 'Casio G-Shock', price: 100 },
-  //   { id: 5, name: 'Tag Heuer Carrera', price: 3000 },
-  // ];
-
+  
   return (
     <>
         
       <h1>Vite + React</h1>
+      <h4>Add:{count.length}</h4>
+      <div className='design'>
       {
-        watchs.map(watch => <Watch key={watch.id} watch = {watch}></Watch> )
+        watchs.map(watch => <Watch watch={watch} handleCard={handleCard}></Watch> )
       }
-    
+      </div>
     </>
   )
 }
